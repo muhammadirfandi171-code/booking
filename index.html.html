@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Foto Studio & Kostum Yearbook</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    margin:0;
+    padding:0;
+}
+
+.container{
+    max-width:750px;
+    background:white;
+    margin:40px auto;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+label{
+    font-weight:600;
+    display:block;
+    margin-top:15px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    font-family:'Poppins';
+}
+
+textarea{
+    resize:none;
+    height:80px;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+}
+
+.row div{
+    flex:1;
+}
+
+.checkbox-group label{
+    font-weight:400;
+    display:block;
+    margin-top:5px;
+}
+
+button{
+    margin-top:25px;
+    padding:14px;
+    width:100%;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#5a67d8;
+}
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    font-size:14px;
+    color:#666;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>📸 Booking Foto Studio & Kostum Yearbook</h1>
+
+<form id="bookingForm">
+
+<label>Nama</label>
+<input type="text" id="nama" required>
+
+<label>Sekolah / Instansi</label>
+<input type="text" id="sekolah" required>
+
+<label>No. WhatsApp</label>
+<input type="tel" id="wa" required>
+
+<div class="row">
+<div>
+<label>Tanggal</label>
+<input type="date" id="tanggal" required>
+</div>
+<div>
+<label>Jam</label>
+<input type="time" id="jam" required>
+</div>
+</div>
+
+<label>Jumlah Orang</label>
+<input type="number" id="jumlah" required>
+
+<label>Pilih Layanan</label>
+<div class="checkbox-group">
+<label><input type="checkbox" value="Foto Studio Only" class="layanan"> Foto Studio Only</label>
+<label><input type="checkbox" value="Sewa Kostum Only" class="layanan"> Sewa Kostum Only</label>
+<label><input type="checkbox" value="Foto + Kostum" class="layanan"> Foto + Kostum</label>
+</div>
+
+<label>Tema</label>
+<select id="tema">
+<option value="">-- Pilih Tema --</option>
+<option>Formal</option>
+<option>Casual</option>
+<option>Vintage</option>
+<option>Korean Style</option>
+</select>
+
+<label>Jenis Kostum</label>
+<input type="text" id="jenis">
+
+<label>Ukuran</label>
+<input type="text" id="ukuran">
+
+<label>Jumlah Kostum</label>
+<input type="number" id="jumlah_kostum">
+
+<label>Makeup</label>
+<select id="makeup">
+<option>Tidak</option>
+<option>Ya</option>
+</select>
+
+<label>Lokasi</label>
+<select id="lokasi">
+<option>Datang ke Studio</option>
+<option>Home Service</option>
+</select>
+
+<label>DP (Rp)</label>
+<input type="number" id="dp">
+
+<label>Metode Pembayaran</label>
+<select id="metode">
+<option>Transfer</option>
+<option>Cash</option>
+<option>E-Wallet</option>
+</select>
+
+<label>Catatan</label>
+<textarea id="catatan"></textarea>
+
+<button type="submit">Kirim Booking</button>
+
+</form>
+
+<div class="note">
+Booking dinyatakan <b>FIX setelah DP masuk</b> 🙏
+</div>
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let layanan = [];
+document.querySelectorAll(".layanan:checked").forEach(el => {
+layanan.push(el.value);
+});
+
+let pesan = `📸 *BOOKING FOTO STUDIO & KOSTUM*%0A%0A
+👤 Nama: ${nama.value}%0A
+🏫 Sekolah: ${sekolah.value}%0A
+📱 WA: ${wa.value}%0A%0A
+📅 Tanggal: ${tanggal.value}%0A
+⏰ Jam: ${jam.value}%0A
+👥 Jumlah Orang: ${jumlah.value}%0A%0A
+📦 Layanan: ${layanan.join(", ")}%0A
+🎓 Tema: ${tema.value}%0A
+👔 Kostum: ${jenis.value} | ${ukuran.value} | ${jumlah_kostum.value}%0A
+💄 Makeup: ${makeup.value}%0A
+📍 Lokasi: ${lokasi.value}%0A%0A
+💰 DP: Rp ${dp.value}%0A
+💳 Metode: ${metode.value}%0A%0A
+📝 Catatan: ${catatan.value}`;
+
+window.open(`https://wa.me/6289665898627?text=${pesan}`, "_blank");
+
+window.location.href = `mailto:namshatelas@gmail.com?subject=Booking Foto Studio&body=${pesan}`;
+
+});
+</script>
+
+</body>
+</html>
